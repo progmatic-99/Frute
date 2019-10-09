@@ -1,5 +1,8 @@
-# Clox Interpreter
+# **Frute** : Interpreter for the language F*
 
-1. This is an interpreter for the Lox Language.
-2. Lox is a dynamically typed language.
+## About _F*_:
+
+1. High Level Language
+2. Dynamically Typed
+3. Automatic Memory Management
 
