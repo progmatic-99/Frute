@@ -5,4 +5,3 @@
 1. High Level Language
 2. Dynamically Typed
 3. Automatic Memory Management
-
