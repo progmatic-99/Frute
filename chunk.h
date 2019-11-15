@@ -2,8 +2,8 @@
  * "Chunk" refers to blobs of bytecodes.
  */
 
-#ifndef clox_chunk_h
-#define clox_chunk_h
+#ifndef frute_chunk_h
+#define frute_chunk_h
 
 #include "common.h"
 

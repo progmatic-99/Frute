@@ -3,8 +3,8 @@
  * Grow the array to that size.
  */
 
-#ifndef clox_memory_h
-#define clox_memory_h
+#ifndef frute_memory_h
+#define frute_memory_h
 
 #define GROW_CAPACITY(capacity) \
 	((capacity < 8) ? 8 : (capacity * 2))
