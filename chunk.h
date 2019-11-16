@@ -7,14 +7,18 @@
 
 #include "common.h"
 
+/* One byte operation code
+ * Tells what operation we are
+ * dealing with: Add, Subtract
+ */
 typedef enum{
-	OP_RETURN,
+	OP_RETURN, // Return from current function
 }Opcode;
 
 typedef struct{
-	int count;
-	int capacity;
-	uint8_t *code;
+	int count; // No. of allocated entries in use
+	int capacity; // No. of elements in the array we have allocated
+	uint8_t *code; // Array of bytes
 }Chunk;
 
 void initChunk(Chunk *chunk);
