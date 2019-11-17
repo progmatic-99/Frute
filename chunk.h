@@ -6,6 +6,7 @@
 #define frute_chunk_h
 
 #include "common.h"
+#include "value.h"
 
 /* One byte operation code
  * Tells what operation we are
@@ -19,6 +20,7 @@ typedef struct{
 	int count; // No. of allocated entries in use
 	int capacity; // No. of elements in the array we have allocated
 	uint8_t *code; // Array of bytes
+    ValueArray constants;
 }Chunk;
 
 void initChunk(Chunk *chunk);
