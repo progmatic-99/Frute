@@ -13,6 +13,7 @@
  * dealing with: Add, Subtract
  */
 typedef enum{
+    OP_CONSTANT,
 	OP_RETURN, // Return from current function
 }Opcode;
 
