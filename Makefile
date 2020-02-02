@@ -1,2 +1,2 @@
-main: ./src/*.c ./headers/*.h
-	gcc -Iinclude -Idir ./headers/ -o main ./src/*.c
+main: ./src/*.c
+	gcc -o main ./src/*.c
