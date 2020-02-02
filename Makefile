@@ -1,3 +1,2 @@
-main: main.c value.c memory.c debug.c chunk.c
-		gcc -o main main.c value.c memory.c debug.c chunk.c
-
+main: ./src/*.c ./headers/*.h
+	gcc -Iinclude -Idir ./headers/ -o main ./src/*.c

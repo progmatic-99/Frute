@@ -5,6 +5,7 @@
 
 #ifndef frute_memory_h
 #define frute_memory_h
+#include <stddef.h>
 
 #define GROW_CAPACITY(capacity) \
 	((capacity < 8) ? 8 : (capacity * 2))

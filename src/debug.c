@@ -1,6 +1,6 @@
 #include <stdio.h>                                     
-#include "value.h"
-#include "debug.h"                                     
+#include "../headers/value.h"
+#include "../headers/debug.h"                                     
 
 void disassembleChunk(Chunk* chunk, const char* name)
 {
