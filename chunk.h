@@ -13,14 +13,15 @@
  * dealing with: Add, Subtract
  */
 typedef enum{
-    OP_CONSTANT, // For operands
-	OP_RETURN, // Return from current function
+    OP_CONSTANT, // For operands(1 byte)
+    OP_CONSTANT_LONG, // For operands(3 bytes)
+    OP_RETURN, // Return from current function
 }Opcode;
 
 typedef struct{
-	int count; // No. of allocated entries in use
-	int capacity; // No. of elements in the array we have allocated
-	uint8_t *code; // Array of bytes
+    int count; // No. of allocated entries in use
+    int capacity; // No. of elements in the array we have allocated
+    uint8_t *code; // Array of bytes
     int *lines; // For line number
     ValueArray constants;
 }Chunk;
@@ -29,5 +30,6 @@ void initChunk(Chunk *chunk);
 void freeChunk(Chunk *chunk);
 void writeChunk(Chunk *chunk, uint8_t byte, int line);
 int addConstant(Chunk *chunk, Value value);
+void writeConstant(Chunk *chunk, Value value, int line);
 
 #endif

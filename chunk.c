@@ -5,38 +5,49 @@
 
 void initChunk(Chunk *chunk)
 {
-	chunk->count = 0;
-	chunk->capacity = 0;
-	chunk->code = NULL;
+    chunk->count = 0;
+    chunk->capacity = 0;
+    chunk->code = NULL;
     chunk->lines = NULL;
     initValueArray(&chunk->constants);
 }
 
 void freeChunk(Chunk *chunk)
 {
-	FREE_ARRAY(uint8_t, chunk->code, chunk->capacity);
+    FREE_ARRAY(uint8_t, chunk->code, chunk->capacity);
     FREE_ARRAY(int, chunk->lines, chunk->capacity);
-	initChunk(chunk);
+    initChunk(chunk);
     freeValueArray(&chunk->constants);
 }
 
 void writeChunk(Chunk *chunk, uint8_t byte, int line)
 {
-	if(chunk->capacity < chunk->count + 1){
-		int old_capacity = chunk->capacity;
-		chunk->capacity = GROW_CAPACITY(old_capacity);
-		chunk->code = GROW_ARRAY(chunk->code, uint8_t,
-				old_capacity, chunk->capacity);
-	    chunk->lines = GROW_ARRAY(chunk->lines, int, old_capacity, chunk->capacity);
+    if(chunk->capacity < chunk->count + 1){
+        int old_capacity = chunk->capacity;
+        chunk->capacity = GROW_CAPACITY(old_capacity);
+        chunk->code = GROW_ARRAY(chunk->code, uint8_t,
+                old_capacity, chunk->capacity);
+        chunk->lines = GROW_ARRAY(chunk->lines, int,
+                old_capacity, chunk->capacity);
     }
 
-	chunk->code[chunk->count] = byte; // Storing the byte
+    chunk->code[chunk->count] = byte; // Storing the byte
     chunk->lines[chunk->count] = line; // Storing Line numbers
-	chunk->count ++; // Incrementing counter
+    chunk->count ++; // Incrementing counter
 }
 
 int addConstant(Chunk *chunk, Value value)
 {
     writeValueArray(&chunk->constants, value);
     return chunk->constants.count - 1;
+}
+
+void writeConstant(Chunk *chunk, Value value, int line)
+{
+    if(chunk->capacity < chunk->count + 1){
+        int old_capacity = chunk->capacity;
+        writeValueArray(&chunk->constants, value);
+        chunk->lines = GROW_ARRAY(chunk->lines, int,
+                old_capacity, chunk->capacity);
+    }
 }
