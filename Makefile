@@ -1,2 +1,2 @@
-main: ./src/*.c
-	gcc -o main ./src/*.c
+main: ./*.c
+	gcc -o main ./*.c
