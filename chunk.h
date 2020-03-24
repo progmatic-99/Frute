@@ -14,8 +14,8 @@
  */
 typedef enum{
     OP_CONSTANT, // For operands(1 byte)
-    OP_CONSTANT_LONG, // For operands(3 bytes)
     OP_RETURN, // Return from current function
+    OP_CONSTANT_LONG, // For operands(3 bytes)
 }Opcode;
 
 typedef struct{
