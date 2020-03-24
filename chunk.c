@@ -36,6 +36,7 @@ void writeChunk(Chunk *chunk, uint8_t byte, int line)
     chunk->count ++; // Incrementing counter
 }
 
+// Returns index of constant
 int addConstant(Chunk *chunk, Value value)
 {
     writeValueArray(&chunk->constants, value);
