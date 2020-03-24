@@ -1,2 +1,2 @@
-frute: ./*.c
-	gcc -o frute ./*.c
+main: ./*.c
+	gcc -o main ./*.c
