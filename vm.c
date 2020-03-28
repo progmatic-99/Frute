@@ -35,12 +35,12 @@ static Interpret_Result run()
                  break;
             }
 
-            /*case OP_CONSTANT_LONG: {
+            case OP_CONSTANT_LONG: {
                  Value constant1 = READ_CONSTANT();
 
                  printValue(constant1);
                  printf("\n");
-            }*/
+            }
 
             case OP_RETURN: {
                  return INTERPRET_OK;
