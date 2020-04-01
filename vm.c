@@ -7,6 +7,7 @@
 #include <stdio.h>
 
 #include "common.h"
+#include "debug.h"
 #include "vm.h"
 
 VM vm;
@@ -21,10 +22,15 @@ void freeVM()
 
 static Interpret_Result run()
 {
-    #define READ_BYTE() (*vm.ip ++)
-    #define READ_CONSTANT() (vm.chunk->constants.values[READ_BYTE()])
+#define READ_BYTE() (*vm.ip ++)
+#define READ_CONSTANT() (vm.chunk->constants.values[READ_BYTE()])
+#define READ_CONSTANT_LONG() (vm.chunk->constants.values[READ_BYTE()])
 
     for(;;) {
+#ifdef DEBUG_TRACE_EXECUTION
+        // To convert ip back to relative offset from beginningof bytecode
+        disassembleInstruction(vm.chunk, (int)(vm.ip - vm.chunk->code));
+#endif
         uint8_t instruction;
         switch(instruction = READ_BYTE())
         {
@@ -36,10 +42,10 @@ static Interpret_Result run()
             }
 
             case OP_CONSTANT_LONG: {
-                 Value constant1 = READ_CONSTANT();
-
-                 printValue(constant1);
+                 Value constant = READ_CONSTANT_LONG();
+                 printValue(constant);
                  printf("\n");
+                 break;
             }
 
             case OP_RETURN: {
@@ -48,8 +54,9 @@ static Interpret_Result run()
         }
     }
 
-    #undef READ_BYTE
-    #undef READ_CONSTANT
+#undef READ_BYTE
+#undef READ_CONSTANT
+#undef READ_CONSTANT_LONG
 }
 
 Interpret_Result interpret(Chunk *chunk)
