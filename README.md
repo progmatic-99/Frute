@@ -9,5 +9,5 @@
 ## How to run:
 
 + Run ```make frute``` on command line in the topmost directory.
-+ Run ``make clean``` to remove elf binaries created.
++ Run ```make clean``` to remove elf binaries created.
 
