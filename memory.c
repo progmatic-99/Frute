@@ -18,5 +18,8 @@ void *reallocate(void *previous, size_t oldSize, size_t newSize)
         return NULL;
     }
 
-    return realloc(previous, newSize);
+    void *result = realloc(previous, newSize);
+    if(result == NULL) exit(1);
+
+    return result;
 }
