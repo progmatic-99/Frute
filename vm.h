@@ -8,7 +8,8 @@
 
 typedef struct{
     Chunk *chunk;
-    uint8_t *ip; // Location of current instruction being executed
+    uint8_t *ip; /* Location of current instruction being executed,
+                    Instruction Pointer / Program Counter */
 } VM;
 
 /* To set exit code of the process.

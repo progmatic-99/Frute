@@ -24,11 +24,11 @@ static Interpret_Result run()
 {
 #define READ_BYTE() (*vm.ip ++)
 #define READ_CONSTANT() (vm.chunk->constants.values[READ_BYTE()])
-#define READ_CONSTANT_LONG() (vm.chunk->constants.values[READ_BYTE()])
+//#define READ_CONSTANT_LONG() (vm.chunk->constants.values[READ_BYTE()])
 
     for(;;) {
 #ifdef DEBUG_TRACE_EXECUTION
-        // To convert ip back to relative offset from beginningof bytecode
+        // To convert ip back to relative offset from beginning of bytecode
         disassembleInstruction(vm.chunk, (int)(vm.ip - vm.chunk->code));
 #endif
         uint8_t instruction;
@@ -42,7 +42,7 @@ static Interpret_Result run()
             }
 
             case OP_CONSTANT_LONG: {
-                 Value constant = READ_CONSTANT_LONG();
+                 Value constant = READ_CONSTANT();
                  printValue(constant);
                  printf("\n");
                  break;
@@ -56,7 +56,7 @@ static Interpret_Result run()
 
 #undef READ_BYTE
 #undef READ_CONSTANT
-#undef READ_CONSTANT_LONG
+//#undef READ_CONSTANT_LONG
 }
 
 Interpret_Result interpret(Chunk *chunk)
@@ -65,3 +65,4 @@ Interpret_Result interpret(Chunk *chunk)
     vm.ip = vm.chunk->code;
     return run();
 }
+
